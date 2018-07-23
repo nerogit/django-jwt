@@ -4,6 +4,7 @@ from jwt import decode
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.http.response import JsonResponse
 
 from .exceptions import (
     InvalidHeaderError,
@@ -51,7 +52,10 @@ def jwt_required(view_func):
     @functools.wraps(view_func)
     def wrapper(request, *args, **kwargs):
         from django.conf import settings
-        jwt_data = _decode_jwt_from_request(request)
+        try:
+            jwt_data = _decode_jwt_from_request(request)
+        except (NoAuthorizationError, InvalidHeaderError) as e:
+            return JsonResponse({settings.ERROR_MESSAGE_KEY: str(e)}, status=401)
         identity_field = settings.JWT['IDENTITY_FIELD']
         identity = jwt_data[identity_field]
         # TODO: Improve error handling

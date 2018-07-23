@@ -1,5 +1,6 @@
 from django_jwt import create_access_token
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import (
     TestCase,
@@ -45,3 +46,8 @@ class ViewTestCase(TestCase):
         self.assertEqual(200, resp.status_code)
         recv_data = resp.json()
         self.assertEqual({"username": self.username}, recv_data)
+
+    def test_unauthorized_access(self):
+        resp = self.client.get('/fbv')
+        self.assertEqual(401, resp.status_code)
+        self.assertIn(settings.ERROR_MESSAGE_KEY, resp.json().keys())

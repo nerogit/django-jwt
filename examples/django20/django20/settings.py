@@ -120,6 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+ERROR_MESSAGE_KEY = "errorMSG"
+
 JWT = {
     "IDENTITY_FIELD": "email",
+    "ERROR_MSG_KEY": ERROR_MESSAGE_KEY,
 }
