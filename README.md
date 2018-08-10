@@ -4,7 +4,7 @@ Inspired by [flask-jwt-extended](https://github.com/vimalloc/flask-jwt-extended)
 
 ## Installation
 
-`pip install git+https://github.com/nerogit/django-jwt.git`
+`pip install git+https://github.com/dohvis/django-jwt.git`
 
 ## Usage
 
