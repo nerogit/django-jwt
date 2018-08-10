@@ -33,7 +33,7 @@ def _decode_jwt_from_request(request):
     parts = jwt_header.split()
     if not header_type:
         if len(parts) != 1:
-            msg = "Bad {} header. Expected value '<JWT>'".format(header_name)
+            msg = "Bad {} header. Expected value {{0}: {1} <JWT>}".format(header_name, header_type)
             raise InvalidHeaderError(msg)
         encoded_token = parts[0]
     else:
