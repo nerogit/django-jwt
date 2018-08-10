@@ -20,11 +20,11 @@ def _load_user(identity):
 
 def _decode_jwt_from_request(request):
     headers = request.META
-    header_name = 'Authorization'
+    header_name = 'HTTP_Authorization'
     header_type = 'Bearer'
 
     # Verify we have the auth header
-    jwt_header = headers.get('Authorization', None)
+    jwt_header = headers.get('HTTP_Authorization', None)
     if not jwt_header:
         raise NoAuthorizationError("Missing {} Header".format(header_name))
 

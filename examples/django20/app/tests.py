@@ -31,7 +31,7 @@ class ViewTestCase(TestCase):
 
     def test_fbv(self):
         headers = {
-            "Authorization": f'Bearer {self.access_token}',
+            "HTTP_Authorization": f'Bearer {self.access_token}',
         }
         resp = self.client.get('/fbv', **headers)
         self.assertEqual(200, resp.status_code)
@@ -40,7 +40,7 @@ class ViewTestCase(TestCase):
 
     def test_cbv(self):
         headers = {
-            "Authorization": f'Bearer {self.access_token}',
+            "HTTP_Authorization": f'Bearer {self.access_token}',
         }
         resp = self.client.get('/cbv', **headers)
         self.assertEqual(200, resp.status_code)
