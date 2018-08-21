@@ -1,5 +1,7 @@
 # Django JWT
 
+[![CircleCI](https://circleci.com/gh/dohvis/django-jwt.svg?style=svg)](https://circleci.com/gh/dohvis/django-jwt)
+
 Inspired by [flask-jwt-extended](https://github.com/vimalloc/flask-jwt-extended)
 
 ## Installation
