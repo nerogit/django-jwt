@@ -58,8 +58,9 @@ def jwt_required(view_func):
             return JsonResponse({settings.ERROR_MESSAGE_KEY: str(e)}, status=401)
         identity_field = settings.JWT['IDENTITY_FIELD']
         identity = jwt_data[identity_field]
-        # TODO: Improve error handling
         user = _load_user({identity_field: identity})
+        if not user:
+            return JsonResponse({settings.ERROR_MESSAGE_KEY: 'Invalid token'}, status=401)
         request.user = user
         return view_func(request, *args, **kwargs)
 
