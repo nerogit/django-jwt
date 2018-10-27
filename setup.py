@@ -11,7 +11,7 @@ def readme():
         pass
 
 
-version = '0.0.2'
+version = '0.0.4'
 
 setup(
     name='django-jwt',
@@ -27,9 +27,9 @@ setup(
     ],
     description='Send e-mail, easier',
     long_description=readme(),
-    url='https://github.com/nerogit/django-jwt',
-    author='Dohyeon Kim',
-    author_email='nero.union12' '@' 'gmail.com',
+    url='https://github.com/dohvis/django-jwt',
+    author='Kim Dohyeon',
+    author_email='k.dohvis' '@' 'gmail.com',
     license='MIT License',
     classifiers=[
         'Programming Language :: Python :: 3 :: Only',
