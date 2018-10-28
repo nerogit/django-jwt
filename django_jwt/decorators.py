@@ -33,7 +33,7 @@ def _decode_jwt_from_request(request):
     parts = jwt_header.split()
     if not header_type:
         if len(parts) != 1:
-            msg = "Bad {} header. Expected value {{0}: {1} <JWT>}".format(header_name, header_type)
+            msg = "Bad {} header. Expected value '<JWT>'".format(header_name)
             raise InvalidHeaderError(msg)
         encoded_token = parts[0]
     else:
@@ -60,7 +60,7 @@ def jwt_required(view_func):
         identity = jwt_data[identity_field]
         user = _load_user({identity_field: identity})
         if not user:
-            return JsonResponse({settings.ERROR_MESSAGE_KEY: 'Invalid token'}, status=401)
+            return JsonResponse({settings.ERROR_MESSAGE_KEY: 'Invalid JWT'}, status=401)
         request.user = user
         return view_func(request, *args, **kwargs)
 
