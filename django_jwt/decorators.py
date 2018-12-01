@@ -42,7 +42,7 @@ def _decode_jwt_from_request(request):
             raise InvalidHeaderError(msg)
         encoded_token = parts[1]
 
-    decoded_token = decode(encoded_token, settings.SECRET_KEY)
+    decoded_token = decode(encoded_token, settings.SECRET_KEY, algorithms=['HS256'])
     if not decoded_token:
         raise NoAuthorizationError()
     return decoded_token

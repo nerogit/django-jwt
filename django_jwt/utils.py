@@ -10,4 +10,4 @@ def create_access_token(user):
     identity = getattr(user, identity_field)
     now = datetime.datetime.utcnow()
     payload = {identity_field: identity, 'iat': now}
-    return encode(payload, settings.SECRET_KEY).decode()
+    return encode(payload, settings.SECRET_KEY, algorithm='HS256').decode()
