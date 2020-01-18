@@ -55,12 +55,12 @@ def jwt_required(view_func):
         try:
             jwt_data = _decode_jwt_from_request(request)
         except (NoAuthorizationError, InvalidHeaderError) as e:
-            return JsonResponse({settings.ERROR_MESSAGE_KEY: str(e)}, status=401)
+            return JsonResponse({settings.JWT['ERROR_MESSAGE_KEY']: str(e)}, status=401)
         identity_field = settings.JWT['IDENTITY_FIELD']
         identity = jwt_data[identity_field]
         user = _load_user({identity_field: identity})
         if not user:
-            return JsonResponse({settings.ERROR_MESSAGE_KEY: 'Invalid JWT'}, status=401)
+            return JsonResponse({settings.JWT['ERROR_MESSAGE_KEY']: 'Invalid JWT'}, status=401)
         request.user = user
         return view_func(request, *args, **kwargs)
 
